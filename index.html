@@ -1,0 +1,1238 @@
+<!doctype html>
+<html lang="id" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PICA - Pertamina Internal Communication &amp; Alignment</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            pertamina: {
+              red: '#E21F26',
+              blue: '#0054A6',
+              green: '#00A651',
+              darkBlue: '#003D7A',
+              lightRed: '#FEE2E2',
+              lightBlue: '#DBEAFE',
+              lightGreen: '#D1FAE5'
+            }
+          },
+          fontFamily: {
+            inter: ['Inter', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    * { font-family: 'Inter', sans-serif; }
+    .sidebar-item { transition: all 0.2s ease; }
+    .sidebar-item:hover { background: rgba(0, 84, 166, 0.1); }
+    .sidebar-item.active { background: linear-gradient(90deg, #0054A6 0%, #003D7A 100%); color: white; }
+    .card-hover { transition: all 0.3s ease; }
+    .card-hover:hover { transform: translateY(-2px); box-shadow: 0 10px 40px rgba(0,0,0,0.1); }
+    .progress-bar { transition: width 0.8s ease-out; }
+    .fade-in { animation: fadeIn 0.4s ease-out; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    .submenu { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+    .submenu.open { max-height: 500px; }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #f1f1f1; }
+    ::-webkit-scrollbar-thumb { background: #0054A6; border-radius: 3px; }
+  </style>
+  <style>body { box-sizing: border-box; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full bg-gray-50">
+  <div class="h-full flex overflow-hidden"><!-- Sidebar -->
+   <aside class="w-72 bg-white border-r border-gray-200 flex flex-col shadow-lg" style="min-width: 288px;"><!-- Logo Section -->
+    <div class="p-6 border-b border-gray-100">
+     <div class="flex items-center gap-3">
+      <img src="picaa.png" alt="picaa Logo" class="w-30 h-12 object-contain hover:scale-105 transition-transform duration-300" loading="lazy">
+      <div>
+       <h1 id="logo-title" class="text-xl font-bold text-pertamina-blue">PICA</h1>
+       <p class="text-xs text-gray-500 leading-tight">Pertamina Internal<br>
+        Collaboration &amp; Archive</p>
+      </div>
+     </div>
+    </div><!-- Navigation -->
+    <nav class="flex-1 py-4 overflow-y-auto">
+     <div class="px-4 mb-2"><span class="text-xs font-semibold text-gray-400 uppercase tracking-wider">Main Menu</span>
+     </div><!-- Menu 1: Corporate Communication -->
+     <div class="menu-group"><button onclick="toggleMenu('corpcomm')" class="sidebar-item w-full flex items-center justify-between px-4 py-3 text-left rounded-lg mx-2" style="width: calc(100% - 16px);" id="menu-corpcomm">
+       <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-lg bg-pertamina-lightBlue flex items-center justify-center">
+         <svg class="w-5 h-5 text-pertamina-blue" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+         </svg>
+        </div><span class="font-medium text-gray-700 text-sm">Corporate Communication</span>
+       </div>
+       <svg class="w-4 h-4 text-gray-400 transform transition-transform" id="arrow-corpcomm" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+       </svg></button>
+      <div class="submenu pl-14 pr-4" id="submenu-corpcomm"><button onclick="showContent('calendar')" class="w-full text-left py-2 px-3 text-sm text-gray-600 hover:text-pertamina-blue hover:bg-gray-50 rounded-md transition-colors">📅 Content Calendar</button> <button onclick="showContent('media')" class="w-full text-left py-2 px-3 text-sm text-gray-600 hover:text-pertamina-blue hover:bg-gray-50 rounded-md transition-colors">🎥 Media Coverage Schedule</button> <button onclick="showContent('planner')" class="w-full text-left py-2 px-3 text-sm text-gray-600 hover:text-pertamina-blue hover:bg-gray-50 rounded-md transition-colors">📝 Content Planner</button> <button onclick="showContent('workspace')" class="w-full text-left py-2 px-3 text-sm text-gray-600 hover:text-pertamina-blue hover:bg-gray-50 rounded-md transition-colors">👥 Team Workspace</button>
+      </div>
+     </div><!-- Menu 2: Stakeholder Relations -->
+     <div class="menu-group"><button onclick="toggleMenu('stakeholder')" class="sidebar-item w-full flex items-center justify-between px-4 py-3 text-left rounded-lg mx-2" style="width: calc(100% - 16px);" id="menu-stakeholder">
+       <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-lg bg-pertamina-lightGreen flex items-center justify-center">
+         <svg class="w-5 h-5 text-pertamina-green" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+         </svg>
+        </div><span class="font-medium text-gray-700 text-sm">Stakeholder Relations</span>
+       </div>
+       <svg class="w-4 h-4 text-gray-400 transform transition-transform" id="arrow-stakeholder" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+       </svg></button>
+      <div class="submenu pl-14 pr-4" id="submenu-stakeholder"><button onclick="showContent('government')" class="w-full text-left py-2 px-3 text-sm text-gray-600 hover:text-pertamina-blue hover:bg-gray-50 rounded-md transition-colors">🏛️ Government Relations</button> <button onclick="showContent('nongovernment')" class="w-full text-left py-2 px-3 text-sm text-gray-600 hover:text-pertamina-blue hover:bg-gray-50 rounded-md transition-colors">🤝 Non-Government Partners</button>
+      </div>
+     </div><!-- Menu 3: CSR & SMEPP -->
+     <div class="menu-group"><button onclick="toggleMenu('csr')" class="sidebar-item w-full flex items-center justify-between px-4 py-3 text-left rounded-lg mx-2" style="width: calc(100% - 16px);" id="menu-csr">
+       <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-lg bg-pertamina-lightRed flex items-center justify-center">
+         <svg class="w-5 h-5 text-pertamina-red" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+         </svg>
+        </div><span class="font-medium text-gray-700 text-sm">CSR &amp; SMEPP</span>
+       </div>
+       <svg class="w-4 h-4 text-gray-400 transform transition-transform" id="arrow-csr" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+       </svg></button>
+      <div class="submenu pl-14 pr-4" id="submenu-csr"><button onclick="showContent('csrprogram')" class="w-full text-left py-2 px-3 text-sm text-gray-600 hover:text-pertamina-blue hover:bg-gray-50 rounded-md transition-colors">🌱 CSR Programs</button> <button onclick="showContent('smepp')" class="w-full text-left py-2 px-3 text-sm text-gray-600 hover:text-pertamina-blue hover:bg-gray-50 rounded-md transition-colors">🏪 SMEPP Monitoring</button>
+      </div>
+     </div><!-- Menu 4: Corporate Governance -->
+     <div class="menu-group"><button onclick="toggleMenu('governance')" class="sidebar-item w-full flex items-center justify-between px-4 py-3 text-left rounded-lg mx-2" style="width: calc(100% - 16px);" id="menu-governance">
+       <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-lg bg-gray-100 flex items-center justify-center">
+         <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+         </svg>
+        </div><span class="font-medium text-gray-700 text-sm">Corporate Governance</span>
+       </div>
+       <svg class="w-4 h-4 text-gray-400 transform transition-transform" id="arrow-governance" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+       </svg></button>
+      <div class="submenu pl-14 pr-4" id="submenu-governance"><button onclick="showContent('policies')" class="w-full text-left py-2 px-3 text-sm text-gray-600 hover:text-pertamina-blue hover:bg-gray-50 rounded-md transition-colors">📋 Policy Documents</button> <button onclick="showContent('boardmeeting')" class="w-full text-left py-2 px-3 text-sm text-gray-600 hover:text-pertamina-blue hover:bg-gray-50 rounded-md transition-colors">📆 Board Meetings</button> <button onclick="showContent('decisions')" class="w-full text-left py-2 px-3 text-sm text-gray-600 hover:text-pertamina-blue hover:bg-gray-50 rounded-md transition-colors">📁 Decision Archive</button>
+      </div>
+     </div>
+    </nav><!-- User Profile -->
+    <div class="p-4 border-t border-gray-100 bg-gray-50">
+     <div class="flex items-center gap-3">
+      <div class="w-10 h-10 rounded-full bg-gradient-to-br from-pertamina-blue to-pertamina-green flex items-center justify-center text-white font-semibold">
+       AP
+      </div>
+      <div class="flex-1">
+       <p class="text-sm font-medium text-gray-800">Admin PICA</p>
+       <p class="text-xs text-gray-500">Corporate Secretary</p>
+      </div><button class="p-2 hover:bg-gray-200 rounded-lg transition-colors">
+       <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+       </svg></button>
+     </div>
+    </div>
+   </aside><!-- Main Content Area -->
+   <main class="flex-1 flex flex-col overflow-hidden"><!-- Top Header -->
+    <header class="bg-white border-b border-gray-200 px-8 py-4 flex items-center justify-between">
+     <div>
+      <h2 id="page-title" class="text-2xl font-bold text-gray-800">Dashboard Overview</h2>
+      <p id="welcome-text" class="text-sm text-gray-500">Selamat datang di PICA Dashboard</p>
+     </div>
+     <div class="flex items-center gap-4">
+      <div class="relative"><input type="text" placeholder="Search..." class="w-64 pl-10 pr-4 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-pertamina-blue focus:ring-2 focus:ring-pertamina-blue/20">
+       <svg class="w-5 h-5 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+       </svg>
+      </div><button class="relative p-2 hover:bg-gray-100 rounded-lg transition-colors">
+       <svg class="w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+       </svg><span class="absolute top-1 right-1 w-2 h-2 bg-pertamina-red rounded-full"></span> </button>
+      <div class="text-right">
+       <p class="text-sm font-medium text-gray-700" id="current-date"></p>
+       <p class="text-xs text-gray-400" id="current-time"></p>
+      </div>
+     </div>
+    </header><!-- Dynamic Content Area -->
+    <div class="flex-1 p-8 overflow-y-auto" id="content-area"><!-- Dashboard Home Content -->
+     <div id="dashboard-home" class="fade-in"><!-- Stats Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+       <div class="card-hover bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+        <div class="flex items-center justify-between mb-4">
+         <div class="w-12 h-12 rounded-xl bg-pertamina-lightBlue flex items-center justify-center">
+          <svg class="w-6 h-6 text-pertamina-blue" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+          </svg>
+         </div><span class="text-xs font-medium text-pertamina-green bg-pertamina-lightGreen px-2 py-1 rounded-full">+12%</span>
+        </div>
+        <p class="text-3xl font-bold text-gray-800">156</p>
+        <p class="text-sm text-gray-500 mt-1">Total Content</p>
+       </div>
+       <div class="card-hover bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+        <div class="flex items-center justify-between mb-4">
+         <div class="w-12 h-12 rounded-xl bg-pertamina-lightGreen flex items-center justify-center">
+          <svg class="w-6 h-6 text-pertamina-green" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
+          </svg>
+         </div><span class="text-xs font-medium text-pertamina-green bg-pertamina-lightGreen px-2 py-1 rounded-full">+8%</span>
+        </div>
+        <p class="text-3xl font-bold text-gray-800">89</p>
+        <p class="text-sm text-gray-500 mt-1">Active Stakeholders</p>
+       </div>
+       <div class="card-hover bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+        <div class="flex items-center justify-between mb-4">
+         <div class="w-12 h-12 rounded-xl bg-pertamina-lightRed flex items-center justify-center">
+          <svg class="w-6 h-6 text-pertamina-red" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+          </svg>
+         </div><span class="text-xs font-medium text-pertamina-green bg-pertamina-lightGreen px-2 py-1 rounded-full">+15%</span>
+        </div>
+        <p class="text-3xl font-bold text-gray-800">24</p>
+        <p class="text-sm text-gray-500 mt-1">CSR Programs</p>
+       </div>
+       <div class="card-hover bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+        <div class="flex items-center justify-between mb-4">
+         <div class="w-12 h-12 rounded-xl bg-gray-100 flex items-center justify-center">
+          <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+          </svg>
+         </div><span class="text-xs font-medium text-pertamina-blue bg-pertamina-lightBlue px-2 py-1 rounded-full">100%</span>
+        </div>
+        <p class="text-3xl font-bold text-gray-800">12</p>
+        <p class="text-sm text-gray-500 mt-1">Board Meetings</p>
+       </div>
+      </div><!-- Quick Actions & Recent Activity -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8"><!-- Quick Actions -->
+       <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+        <h3 class="text-lg font-semibold text-gray-800 mb-4">Quick Actions</h3>
+        <div class="space-y-3"><button onclick="showContent('planner')" class="w-full flex items-center gap-3 p-3 bg-gradient-to-r from-pertamina-blue to-pertamina-darkBlue text-white rounded-xl hover:shadow-lg transition-all">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+          </svg><span class="font-medium">Create New Content</span> </button> <button onclick="showContent('government')" class="w-full flex items-center gap-3 p-3 bg-gray-50 text-gray-700 rounded-xl hover:bg-gray-100 transition-all">
+          <svg class="w-5 h-5 text-pertamina-green" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
+          </svg><span class="font-medium">Add Stakeholder</span> </button> <button onclick="showContent('csrprogram')" class="w-full flex items-center gap-3 p-3 bg-gray-50 text-gray-700 rounded-xl hover:bg-gray-100 transition-all">
+          <svg class="w-5 h-5 text-pertamina-red" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+          </svg><span class="font-medium">View CSR Report</span> </button>
+        </div>
+       </div><!-- Recent Activity -->
+       <div class="lg:col-span-2 bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+        <h3 class="text-lg font-semibold text-gray-800 mb-4">Recent Activity</h3>
+        <div class="space-y-4">
+         <div class="flex items-start gap-4 p-3 hover:bg-gray-50 rounded-xl transition-colors">
+          <div class="w-10 h-10 rounded-full bg-pertamina-lightBlue flex items-center justify-center flex-shrink-0">
+           <svg class="w-5 h-5 text-pertamina-blue" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+           </svg>
+          </div>
+          <div class="flex-1">
+           <p class="text-sm font-medium text-gray-800">Press Release Q4 2024 published</p>
+           <p class="text-xs text-gray-500">Corporate Communication • 2 hours ago</p>
+          </div><span class="px-2 py-1 text-xs font-medium text-pertamina-green bg-pertamina-lightGreen rounded-full">Published</span>
+         </div>
+         <div class="flex items-start gap-4 p-3 hover:bg-gray-50 rounded-xl transition-colors">
+          <div class="w-10 h-10 rounded-full bg-pertamina-lightGreen flex items-center justify-center flex-shrink-0">
+           <svg class="w-5 h-5 text-pertamina-green" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
+           </svg>
+          </div>
+          <div class="flex-1">
+           <p class="text-sm font-medium text-gray-800">New stakeholder added: Kementerian ESDM</p>
+           <p class="text-xs text-gray-500">Stakeholder Relations • 5 hours ago</p>
+          </div><span class="px-2 py-1 text-xs font-medium text-pertamina-blue bg-pertamina-lightBlue rounded-full">Active</span>
+         </div>
+         <div class="flex items-start gap-4 p-3 hover:bg-gray-50 rounded-xl transition-colors">
+          <div class="w-10 h-10 rounded-full bg-pertamina-lightRed flex items-center justify-center flex-shrink-0">
+           <svg class="w-5 h-5 text-pertamina-red" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+           </svg>
+          </div>
+          <div class="flex-1">
+           <p class="text-sm font-medium text-gray-800">CSR Program "Sekolah Energi" milestone reached</p>
+           <p class="text-xs text-gray-500">CSR &amp; SMEPP • 1 day ago</p>
+          </div><span class="px-2 py-1 text-xs font-medium text-amber-600 bg-amber-50 rounded-full">In Progress</span>
+         </div>
+        </div>
+       </div>
+      </div><!-- Team Workspace Preview -->
+      <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+       <div class="flex items-center justify-between mb-6">
+        <h3 class="text-lg font-semibold text-gray-800">Team Workspace - Project Progress</h3><button onclick="showContent('workspace')" class="text-sm text-pertamina-blue hover:underline font-medium">View All →</button>
+       </div>
+       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="space-y-4">
+         <div>
+          <div class="flex justify-between mb-2"><span class="text-sm font-medium text-gray-700">Annual Report 2024</span> <span class="text-sm font-semibold text-pertamina-blue">85%</span>
+          </div>
+          <div class="h-3 bg-gray-100 rounded-full overflow-hidden">
+           <div class="progress-bar h-full bg-gradient-to-r from-pertamina-blue to-pertamina-green rounded-full" style="width: 85%"></div>
+          </div>
+         </div>
+         <div>
+          <div class="flex justify-between mb-2"><span class="text-sm font-medium text-gray-700">Media Kit Update</span> <span class="text-sm font-semibold text-pertamina-green">100%</span>
+          </div>
+          <div class="h-3 bg-gray-100 rounded-full overflow-hidden">
+           <div class="progress-bar h-full bg-pertamina-green rounded-full" style="width: 100%"></div>
+          </div>
+         </div>
+        </div>
+        <div class="space-y-4">
+         <div>
+          <div class="flex justify-between mb-2"><span class="text-sm font-medium text-gray-700">Sustainability Report</span> <span class="text-sm font-semibold text-amber-500">60%</span>
+          </div>
+          <div class="h-3 bg-gray-100 rounded-full overflow-hidden">
+           <div class="progress-bar h-full bg-amber-400 rounded-full" style="width: 60%"></div>
+          </div>
+         </div>
+         <div>
+          <div class="flex justify-between mb-2"><span class="text-sm font-medium text-gray-700">CSR Documentation</span> <span class="text-sm font-semibold text-pertamina-red">35%</span>
+          </div>
+          <div class="h-3 bg-gray-100 rounded-full overflow-hidden">
+           <div class="progress-bar h-full bg-pertamina-red rounded-full" style="width: 35%"></div>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div><!-- Content Calendar Page -->
+     <div id="content-calendar" class="hidden fade-in">
+      <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+       <div class="flex items-center justify-between mb-6">
+        <h3 class="text-xl font-bold text-gray-800">📅 Content Calendar - January 2025</h3>
+        <div class="flex gap-2"><button class="px-4 py-2 text-sm font-medium text-gray-600 hover:bg-gray-100 rounded-lg transition-colors">← Prev</button> <button class="px-4 py-2 text-sm font-medium text-white bg-pertamina-blue hover:bg-pertamina-darkBlue rounded-lg transition-colors">Next →</button>
+        </div>
+       </div>
+       <div class="grid grid-cols-7 gap-2 mb-4">
+        <div class="text-center text-sm font-semibold text-gray-500 py-2">
+         Sun
+        </div>
+        <div class="text-center text-sm font-semibold text-gray-500 py-2">
+         Mon
+        </div>
+        <div class="text-center text-sm font-semibold text-gray-500 py-2">
+         Tue
+        </div>
+        <div class="text-center text-sm font-semibold text-gray-500 py-2">
+         Wed
+        </div>
+        <div class="text-center text-sm font-semibold text-gray-500 py-2">
+         Thu
+        </div>
+        <div class="text-center text-sm font-semibold text-gray-500 py-2">
+         Fri
+        </div>
+        <div class="text-center text-sm font-semibold text-gray-500 py-2">
+         Sat
+        </div>
+       </div>
+       <div class="grid grid-cols-7 gap-2">
+        <div class="min-h-24 p-2 bg-white border border-gray-200 rounded-lg hover:border-pertamina-blue transition-colors">
+         <span class="text-sm font-medium">1</span>
+        </div>
+        <div class="min-h-24 p-2 bg-white border border-gray-200 rounded-lg hover:border-pertamina-blue transition-colors"><span class="text-sm font-medium">2</span>
+         <div class="mt-1 text-xs bg-pertamina-lightGreen text-pertamina-green px-2 py-1 rounded">
+          📅 Perwira Menjawab Eps 1
+         </div>
+         <div class="mt-1 text-xs bg-pertamina-lightRed text-pertamina-red px-2 py-1 rounded">
+          🎥 Perwira Menjawab Eps 2
+          </div>
+          <div class="mt-1 text-xs bg-pertamina-lightRed text-pertamina-red px-2 py-1 rounded">
+          🎥 Perwira Menjawab Eps 3
+           </div>
+        </div>
+        <div class="min-h-24 p-2 bg-white border border-gray-200 rounded-lg hover:border-pertamina-blue transition-colors"><span class="text-sm font-medium">3</span>
+          <div class="mt-1 text-xs bg-pertamina-lightBlue text-pertamina-blue px-2 py-1 rounded">
+          📊 GRWM
+         </div>
+        </div>
+        <div class="min-h-24 p-2 bg-white border border-gray-200 rounded-lg hover:border-pertamina-blue transition-colors">
+         <span class="text-sm font-medium">4</span>
+        </div>
+        <div class="min-h-24 p-2 bg-white border border-gray-200 rounded-lg hover:border-pertamina-blue transition-colors">
+         <span class="text-sm font-medium">5</span>
+        </div>
+        <div class="min-h-24 p-2 bg-white border border-gray-200 rounded-lg hover:border-pertamina-blue transition-colors"<span class="text-sm font-medium">6</span>
+        <div class="mt-1 text-xs bg-pertamina-lightRed text-pertamina-red px-2 py-1 rounded">
+          📝 Torang Kasih Tau Edisi Pertashop
+         </div>
+         <div class="mt-1 text-xs bg-pertamina-lightRed text-pertamina-red px-2 py-1 rounded">
+          📝 POV: Tipe-Tipe Orang di Hari PertamaPuasa
+         </div>
+        </div>
+        <div class="min-h-24 p-2 bg-white border border-gray-200 rounded-lg hover:border-pertamina-blue transition-colors">
+         <span class="text-sm font-medium">7</span>
+        </div>
+        <div class="min-h-24 p-2 bg-white border border-gray-200 rounded-lg hover:border-pertamina-blue transition-colors">
+         <span class="text-sm font-medium">8</span>
+        </div>
+        <div class="min-h-24 p-2 bg-pertamina-blue text-white rounded-lg"><span class="text-sm font-medium">16</span>
+         <div class="mt-1 text-xs bg-white/20 px-2 py-1 rounded">
+          📝 Q&A Bareng OJT MOR 8
+         </div>
+        </div>
+        <div class="min-h-24 p-2 bg-white border border-gray-200 rounded-lg hover:border-pertamina-blue transition-colors">
+         <span class="text-sm font-medium">10</span>
+        </div>
+        <div class="min-h-24 p-2 bg-white border border-gray-200 rounded-lg hover:border-pertamina-blue transition-colors">
+         <span class="text-sm font-medium">11</span>
+        </div>
+        <div class="min-h-24 p-2 bg-white border border-gray-200 rounded-lg hover:border-pertamina-blue transition-colors">
+         <span class="text-sm font-medium">12</span>
+        </div>
+        <div class="min-h-24 p-2 bg-white border border-gray-200 rounded-lg hover:border-pertamina-blue transition-colors">
+         <span class="text-sm font-medium">13</span>
+        </div>
+        <div class="min-h-24 p-2 bg-white border border-gray-200 rounded-lg hover:border-pertamina-blue transition-colors">
+         <span class="text-sm font-medium">14</span>
+        </div>
+        <div class="min-h-24 p-2 bg-white border border-gray-200 rounded-lg hover:border-pertamina-blue transition-colors">
+         <span class="text-sm font-medium">15</span>
+        </div>
+        <div class="min-h-24 p-2 bg-white border border-gray-200 rounded-lg hover:border-pertamina-blue transition-colors">
+         <span class="text-sm font-medium">16</span>
+        </div>
+        <div class="min-h-24 p-2 bg-white border border-gray-200 rounded-lg hover:border-pertamina-blue transition-colors">
+         <span class="text-sm font-medium">17</span>
+        </div>
+        <div class="min-h-24 p-2 bg-white border border-gray-200 rounded-lg hover:border-pertamina-blue transition-colors"><span class="text-sm font-medium">18</span>
+        </div>
+        <div class="min-h-24 p-2 bg-white border border-gray-200 rounded-lg hover:border-pertamina-blue transition-colors"><span class="text-sm font-medium">19</span>
+        <div class="mt-1 text-xs bg-pertamina-lightBlue text-pertamina-blue px-2 py-1 rounded">
+          📊 POV: izin mau pulang duluan Tapi bos tiba-tiba ngajak meeting
+         </div>
+        </div>
+        <div class="min-h-24 p-2 bg-white border border-gray-200 rounded-lg hover:border-pertamina-blue transition-colors">
+         <span class="text-sm font-medium">20</span>
+        </div>
+        <div class="min-h-24 p-2 bg-white border border-gray-200 rounded-lg hover:border-pertamina-blue transition-colors">
+         <span class="text-sm font-medium">21</span>
+        </div>
+       </div>
+      </div>
+     </div><!-- Media Coverage Schedule Page -->
+     <div id="content-media" class="hidden fade-in">
+      <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+       <div class="flex items-center justify-between mb-6">
+        <h3 class="text-xl font-bold text-gray-800">🎥 Media Coverage Schedule</h3><button class="px-4 py-2 text-sm font-medium text-white bg-pertamina-red hover:bg-red-700 rounded-lg transition-colors flex items-center gap-2">
+         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+         </svg> Add Schedule </button>
+       </div>
+       <div class="overflow-x-auto">
+        <table class="w-full">
+         <thead>
+          <tr class="border-b border-gray-200">
+           <th class="text-left py-4 px-4 text-sm font-semibold text-gray-600">Content Title</th>
+           <th class="text-left py-4 px-4 text-sm font-semibold text-gray-600">Film Date</th>
+           <th class="text-left py-4 px-4 text-sm font-semibold text-gray-600">Published Date</th>
+           <th class="text-left py-4 px-4 text-sm font-semibold text-gray-600">Progress</th>
+           <th class="text-left py-4 px-4 text-sm font-semibold text-gray-600">Status</th>
+          </tr>
+         </thead>
+         <tbody>
+          <tr class="border-b border-gray-100 hover:bg-gray-50 transition-colors">
+           <td class="py-4 px-4 text-sm text-gray-800">POV: izin mau pulang duluan Tapi bos tiba-tiba ngajak meeting</td>
+           <td class="py-4 px-4 text-sm font-medium text-gray-800">19 Februari 2026</td>
+           <td class="py-4 px-4 text-sm text-gray-600">27 Februari 2026</td>
+           <td class="py-4 px-4">
+            <div class="w-24 bg-gray-200 rounded-full h-2">
+              <div class="progress-bar bg-pertamina-blue h-2 rounded-full" style="width: 100%"></div>
+            </div>
+            <p class="text-xs text-gray-500 mt-1">100%</p>
+             </div>
+            </div></td>
+           <td class="py-4 px-4"><span class="px-3 py-1 text-xs font-medium text-pertamina-green bg-pertamina-lightGreen rounded-full">Published</span></td>
+          </tr>
+          <tr class="border-b border-gray-100 hover:bg-gray-50 transition-colors">
+           <td class="py-4 px-4 text-sm text-gray-800">Ngabuburit Ala Perwira Pertamina</td>
+           <td class="py-4 px-4 text-sm font-medium text-gray-800">-</td>
+           <td class="py-4 px-4 text-sm text-gray-600">-</td>
+           <td class="py-4 px-4">
+            <div class="w-24 bg-gray-200 rounded-full h-2">
+              <div class="progress-bar bg-pertamina-blue h-2 rounded-full" style="width: 40%"></div>
+            </div>
+            <p class="text-xs text-gray-500 mt-1">40%</p>
+             </div>
+            </div></td>
+           <td class="py-4 px-4"><span class="px-3 py-1 text-xs font-medium text-amber-600 bg-amber-50 rounded-full">Draft</span></td>
+          </tr>
+          <tr class="border-b border-gray-100 hover:bg-gray-50 transition-colors">
+           <td class="py-4 px-4 text-sm text-gray-800">Perwira Menjawab Eps 2</td>
+           <td class="py-4 px-4 text-sm font-medium text-gray-800">2 Februari 2026</td>
+           <td class="py-4 px-4 text-sm text-gray-600">-</td>
+           <td class="py-4 px-4">
+            <div class="w-24 bg-gray-200 rounded-full h-2">
+              <div class="progress-bar bg-pertamina-blue h-2 rounded-full" style="width: 75%"></div>
+            </div>
+            <p class="text-xs text-gray-500 mt-1">75%</p>
+             </div>
+            </div></td>
+           <td class="py-4 px-4"><span class="px-3 py-1 text-xs font-medium text-pertamina-blue bg-pertamina-lightBlue rounded-full">Filming</span></td>
+          </tr>
+         </tbody>
+        </table>
+       </div>
+      </div>
+     </div><!-- Content Planner Page -->
+     <div id="content-planner" class="hidden fade-in">
+      <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+       <div class="flex items-center justify-between mb-6">
+        <h3 class="text-xl font-bold text-gray-800">📝 Content Planner</h3><button class="px-4 py-2 text-sm font-medium text-white bg-pertamina-red hover:bg-red-700 rounded-lg transition-colors flex items-center gap-2">
+         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+         </svg> New Content </button>
+       </div>
+       <div class="grid grid-cols-1 md:grid-cols-3 gap-6"><!-- Draft Column -->
+        <div class="bg-gray-50 rounded-xl p-4">
+         <div class="flex items-center gap-2 mb-4">
+          <div class="w-3 h-3 rounded-full bg-gray-400"></div>
+          <h4 class="font-semibold text-gray-700">Draft</h4><span class="ml-auto bg-gray-200 text-gray-600 text-xs font-medium px-2 py-1 rounded-full">3</span>
+         </div>
+         <div class="space-y-3">
+          <div class="bg-white p-4 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-shadow cursor-pointer">
+           <h5 class="font-medium text-gray-800 text-sm mb-2">Ngabuburit Ala Perwira Pertamina</h5>
+           <p class="text-xs text-gray-500 mb-3">Ngabuburit Ala Perwira Pertamina...</p>
+           <div class="flex items-center justify-between">
+            <div class="w-6 h-6 rounded-full bg-pertamina-blue text-white flex items-center justify-center text-xs">
+             AS
+            </div><span class="text-xs text-amber-600 font-medium">Reviewing</span>
+           </div>
+          </div>
+          <div class="bg-white p-4 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-shadow cursor-pointer">
+           <h5 class="font-medium text-gray-800 text-sm mb-2">Fun Fact Energi Menjelang Berbuka</h5>
+           <p class="text-xs text-gray-500 mb-3">Fun Fact Energi Menjelang Berbuka...</p>
+           <div class="flex items-center justify-between">
+            <div class="w-6 h-6 rounded-full bg-pertamina-green text-white flex items-center justify-center text-xs">
+             BK
+            </div><span class="text-xs text-amber-600 font-medium">Reviewing</span>
+           </div>
+          </div>
+         </div>
+        </div><!-- Filming Column -->
+        <div class="bg-amber-50 rounded-xl p-4">
+         <div class="flex items-center gap-2 mb-4">
+          <div class="w-3 h-3 rounded-full bg-amber-400"></div>
+          <h4 class="font-semibold text-gray-700">Filming</h4><span class="ml-auto bg-amber-200 text-amber-700 text-xs font-medium px-2 py-1 rounded-full">2</span>
+         </div>
+         <div class="space-y-3">
+          <div class="bg-white p-4 rounded-lg shadow-sm border border-amber-200 hover:shadow-md transition-shadow cursor-pointer">
+           <h5 class="font-medium text-gray-800 text-sm mb-2">Perwira Menjawab Eps 2</h5>
+           <p class="text-xs text-gray-500 mb-3">Perwira Menjawab Eps 2...</p>
+           <div class="flex items-center justify-between">
+            <div class="w-6 h-6 rounded-full bg-purple-500 text-white flex items-center justify-center text-xs">
+             RW
+            </div><span class="text-xs text-gray-400">Due: Feb 02</span>
+           </div>
+          </div>
+         </div>
+        </div><!-- Published Column -->
+        <div class="bg-pertamina-lightGreen rounded-xl p-4">
+         <div class="flex items-center gap-2 mb-4">
+          <div class="w-3 h-3 rounded-full bg-pertamina-green"></div>
+          <h4 class="font-semibold text-gray-700">Published</h4><span class="ml-auto bg-pertamina-green text-white text-xs font-medium px-2 py-1 rounded-full">5</span>
+         </div>
+         <div class="space-y-3">
+          <div class="bg-white p-4 rounded-lg shadow-sm border border-pertamina-green hover:shadow-md transition-shadow cursor-pointer">
+           <h5 class="font-medium text-gray-800 text-sm mb-2">Q&A Bareng OJT MOR 8</h5>
+           <p class="text-xs text-gray-500 mb-3">Q&A Bareng OJT MOR 8...</p>
+           <div class="flex items-center justify-between">
+            <div class="w-6 h-6 rounded-full bg-pertamina-red text-white flex items-center justify-center text-xs">
+             DM
+            </div><span class="text-xs text-pertamina-green font-medium">✓ Live</span>
+           </div>
+          </div>
+          <div class="bg-white p-4 rounded-lg shadow-sm border border-pertamina-green hover:shadow-md transition-shadow cursor-pointer">
+           <h5 class="font-medium text-gray-800 text-sm mb-2">POV: Tipe-Tipe Orang di Hari Pertama Puasa</h5>
+           <p class="text-xs text-gray-500 mb-3">POV: Tipe-Tipe Orang di Hari Pertama Puasa...</p>
+           <div class="flex items-center justify-between">
+            <div class="w-6 h-6 rounded-full bg-pink-500 text-white flex items-center justify-center text-xs">
+             SL
+            </div><span class="text-xs text-pertamina-green font-medium">✓ Live</span>
+           </div>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div><!-- Team Workspace Page -->
+     <div id="content-workspace" class="hidden fade-in">
+      <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+       <h3 class="text-xl font-bold text-gray-800 mb-6">👥 Team Workspace - Transparansi Progress</h3>
+       <div class="space-y-6">
+        <div class="p-4 bg-gray-50 rounded-xl">
+         <div class="flex items-center gap-4 mb-4">
+          <div class="w-12 h-12 rounded-xl bg-pertamina-blue text-white flex items-center justify-center font-semibold">
+           CC
+          </div>
+          <div class="flex-1">
+           <h4 class="font-semibold text-gray-800">Corporate Communication</h4>
+           <p class="text-sm text-gray-500">4 active projects</p>
+          </div><span class="text-2xl font-bold text-pertamina-blue">78%</span>
+         </div>
+         <div class="h-4 bg-gray-200 rounded-full overflow-hidden">
+          <div class="progress-bar h-full bg-gradient-to-r from-pertamina-blue to-pertamina-green rounded-full" style="width: 78%"></div>
+         </div>
+         <div class="mt-3 flex gap-4 text-sm"><span class="text-gray-500">📝 Draft: 2</span> <span class="text-amber-600">🔄 Review: 1</span> <span class="text-pertamina-green">✓ Done: 1</span>
+         </div>
+        </div>
+        <div class="p-4 bg-gray-50 rounded-xl">
+         <div class="flex items-center gap-4 mb-4">
+          <div class="w-12 h-12 rounded-xl bg-pertamina-green text-white flex items-center justify-center font-semibold">
+           SR
+          </div>
+          <div class="flex-1">
+           <h4 class="font-semibold text-gray-800">Stakeholder Relations</h4>
+           <p class="text-sm text-gray-500">2 active projects</p>
+          </div><span class="text-2xl font-bold text-pertamina-green">92%</span>
+         </div>
+         <div class="h-4 bg-gray-200 rounded-full overflow-hidden">
+          <div class="progress-bar h-full bg-pertamina-green rounded-full" style="width: 92%"></div>
+         </div>
+         <div class="mt-3 flex gap-4 text-sm"><span class="text-gray-500">📝 Draft: 0</span> <span class="text-amber-600">🔄 Review: 1</span> <span class="text-pertamina-green">✓ Done: 1</span>
+         </div>
+        </div>
+        <div class="p-4 bg-gray-50 rounded-xl">
+         <div class="flex items-center gap-4 mb-4">
+          <div class="w-12 h-12 rounded-xl bg-pertamina-red text-white flex items-center justify-center font-semibold">
+           CS
+          </div>
+          <div class="flex-1">
+           <h4 class="font-semibold text-gray-800">CSR &amp; SMEPP</h4>
+           <p class="text-sm text-gray-500">3 active projects</p>
+          </div><span class="text-2xl font-bold text-amber-500">54%</span>
+         </div>
+         <div class="h-4 bg-gray-200 rounded-full overflow-hidden">
+          <div class="progress-bar h-full bg-amber-400 rounded-full" style="width: 54%"></div>
+         </div>
+         <div class="mt-3 flex gap-4 text-sm"><span class="text-gray-500">📝 Draft: 2</span> <span class="text-amber-600">🔄 Review: 1</span> <span class="text-pertamina-green">✓ Done: 0</span>
+         </div>
+        </div>
+        <div class="p-4 bg-gray-50 rounded-xl">
+         <div class="flex items-center gap-4 mb-4">
+          <div class="w-12 h-12 rounded-xl bg-gray-600 text-white flex items-center justify-center font-semibold">
+           CG
+          </div>
+          <div class="flex-1">
+           <h4 class="font-semibold text-gray-800">Corporate Governance</h4>
+           <p class="text-sm text-gray-500">2 active projects</p>
+          </div><span class="text-2xl font-bold text-pertamina-green">100%</span>
+         </div>
+         <div class="h-4 bg-gray-200 rounded-full overflow-hidden">
+          <div class="progress-bar h-full bg-pertamina-green rounded-full" style="width: 100%"></div>
+         </div>
+         <div class="mt-3 flex gap-4 text-sm"><span class="text-gray-500">📝 Draft: 0</span> <span class="text-amber-600">🔄 Review: 0</span> <span class="text-pertamina-green">✓ Done: 2</span>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div><!-- Government Relations Page -->
+     <div id="content-government" class="hidden fade-in">
+      <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+       <div class="flex items-center justify-between mb-6">
+        <h3 class="text-xl font-bold text-gray-800">🏛️ Government Stakeholder Database</h3><button class="px-4 py-2 text-sm font-medium text-white bg-pertamina-green hover:bg-green-700 rounded-lg transition-colors flex items-center gap-2">
+         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
+         </svg> Add Contact </button>
+       </div>
+       <div class="overflow-x-auto">
+        <table class="w-full">
+         <thead>
+          <tr class="border-b border-gray-200 bg-gray-50">
+           <th class="text-left py-4 px-4 text-sm font-semibold text-gray-600 rounded-tl-lg">Nama</th>
+           <th class="text-left py-4 px-4 text-sm font-semibold text-gray-600">Instansi</th>
+           <th class="text-left py-4 px-4 text-sm font-semibold text-gray-600">Jabatan</th>
+           <th class="text-left py-4 px-4 text-sm font-semibold text-gray-600">Influence Level</th>
+           <th class="text-left py-4 px-4 text-sm font-semibold text-gray-600 rounded-tr-lg">Type</th>
+          </tr>
+         </thead>
+         <tbody>
+          <tr class="border-b border-gray-100 hover:bg-gray-50 transition-colors">
+           <td class="py-4 px-4">
+            <div class="flex items-center gap-3">
+             <div class="w-10 h-10 rounded-full bg-pertamina-blue text-white flex items-center justify-center font-medium">
+              ST
+             </div><span class="font-medium text-gray-800">Sherly Tjoanda Laos</span>
+            </div></td>
+           <td class="py-4 px-4 text-sm text-gray-600">Pemprov Maluku Utara</td>
+           <td class="py-4 px-4 text-sm text-gray-600">Gubernur Maluku Utara</td>
+           <td class="py-4 px-4 text-sm text-gray-500">High Interest</td>
+           <td class="py-4 px-4"><span class="px-3 py-1 text-xs font-medium text-pertamina-green bg-pertamina-lightGreen rounded-full">Key Stakeholder</span></td>
+          </tr>
+          <tr class="border-b border-gray-100 hover:bg-gray-50 transition-colors">
+           <td class="py-4 px-4">
+            <div class="flex items-center gap-3">
+             <div class="w-10 h-10 rounded-full bg-pertamina-green text-white flex items-center justify-center font-medium">
+              AI
+             </div><span class="font-medium text-gray-800">Mayjend TNI Amrin Ibrahim</span>
+            </div></td>
+           <td class="py-4 px-4 text-sm text-gray-600">TNI</td>
+           <td class="py-4 px-4 text-sm text-gray-600">Pangdam Cenderawasih</td>
+           <td class="py-4 px-4 text-sm text-gray-500">High Interest</td>
+           <td class="py-4 px-4"><span class="px-3 py-1 text-xs font-medium text-pertamina-green bg-pertamina-lightGreen rounded-full">Key Stakeholder</span></td>
+          </tr>
+          <tr class="border-b border-gray-100 hover:bg-gray-50 transition-colors">
+           <td class="py-4 px-4">
+            <div class="flex items-center gap-3">
+             <div class="w-10 h-10 rounded-full bg-amber-500 text-white flex items-center justify-center font-medium">
+              SD
+             </div><span class="font-medium text-gray-800">Samaun Dahlan, S.Sos.,M.AP.</span>
+            </div></td>
+           <td class="py-4 px-4 text-sm text-gray-600">Pemkab Fak-Fak</td>
+           <td class="py-4 px-4 text-sm text-gray-600">Bupati Kab. Fak-Fak</td>
+           <td class="py-4 px-4 text-sm text-gray-500">High Interest</td>
+           <td class="py-4 px-4"><span class="px-3 py-1 text-xs font-medium text-amber-600 bg-amber-50 rounded-full">Primary Stakeholder</span></td>
+          </tr>
+          <tr class="border-b border-gray-100 hover:bg-gray-50 transition-colors">
+           <td class="py-4 px-4">
+            <div class="flex items-center gap-3">
+             <div class="w-10 h-10 rounded-full bg-gray-400 text-white flex items-center justify-center font-medium">
+              JU
+             </div><span class="font-medium text-gray-800">James Uang, S.Pd.,MM.</span>
+            </div></td>
+           <td class="py-4 px-4 text-sm text-gray-600">Pemkab Halmahera Barat</td>
+           <td class="py-4 px-4 text-sm text-gray-600">Bupati Kab. Halmahera Barat</td>
+           <td class="py-4 px-4 text-sm text-gray-500">High Interest</td>
+           <td class="py-4 px-4"><span class="px-3 py-1 text-xs font-medium text-amber-600 bg-amber-50 rounded-full">Primary Stakeholder</span></td>
+          </tr>
+         </tbody>
+        </table>
+       </div>
+      </div>
+     </div><!-- Non-Government Partners Page -->
+     <div id="content-nongovernment" class="hidden fade-in">
+      <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+       <div class="flex items-center justify-between mb-6">
+        <h3 class="text-xl font-bold text-gray-800">🤝 Non-Government Partners</h3><button class="px-4 py-2 text-sm font-medium text-white bg-pertamina-green hover:bg-green-700 rounded-lg transition-colors flex items-center gap-2">
+         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+         </svg> Add Partner </button>
+       </div>
+       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div class="p-4 border border-gray-200 rounded-xl hover:shadow-md transition-shadow">
+         <div class="flex items-center gap-3 mb-3">
+          <div class="w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center">
+           📰
+          </div>
+          <div>
+           <h4 class="font-semibold text-gray-800">Kompas Media</h4><span class="text-xs text-gray-500">Media Partner</span>
+          </div>
+         </div>
+         <p class="text-sm text-gray-600 mb-3">National news coverage and editorial partnership</p><span class="px-2 py-1 text-xs font-medium text-pertamina-green bg-pertamina-lightGreen rounded-full">Active</span>
+        </div>
+        <div class="p-4 border border-gray-200 rounded-xl hover:shadow-md transition-shadow">
+         <div class="flex items-center gap-3 mb-3">
+          <div class="w-12 h-12 rounded-xl bg-green-100 flex items-center justify-center">
+           🌿
+          </div>
+          <div>
+           <h4 class="font-semibold text-gray-800">WALHI</h4><span class="text-xs text-gray-500">Environmental NGO</span>
+          </div>
+         </div>
+         <p class="text-sm text-gray-600 mb-3">Environmental sustainability collaboration</p><span class="px-2 py-1 text-xs font-medium text-pertamina-blue bg-pertamina-lightBlue rounded-full">Partnership</span>
+        </div>
+        <div class="p-4 border border-gray-200 rounded-xl hover:shadow-md transition-shadow">
+         <div class="flex items-center gap-3 mb-3">
+          <div class="w-12 h-12 rounded-xl bg-purple-100 flex items-center justify-center">
+           🎓
+          </div>
+          <div>
+           <h4 class="font-semibold text-gray-800">Universitas Indonesia</h4><span class="text-xs text-gray-500">Academic Partner</span>
+          </div>
+         </div>
+         <p class="text-sm text-gray-600 mb-3">Research collaboration and talent development</p><span class="px-2 py-1 text-xs font-medium text-pertamina-green bg-pertamina-lightGreen rounded-full">Active</span>
+        </div>
+        <div class="p-4 border border-gray-200 rounded-xl hover:shadow-md transition-shadow">
+         <div class="flex items-center gap-3 mb-3">
+          <div class="w-12 h-12 rounded-xl bg-red-100 flex items-center justify-center">
+           ❤️
+          </div>
+          <div>
+           <h4 class="font-semibold text-gray-800">PMI Jakarta</h4><span class="text-xs text-gray-500">Humanitarian</span>
+          </div>
+         </div>
+         <p class="text-sm text-gray-600 mb-3">Blood donation and disaster relief programs</p><span class="px-2 py-1 text-xs font-medium text-pertamina-green bg-pertamina-lightGreen rounded-full">Active</span>
+        </div>
+        <div class="p-4 border border-gray-200 rounded-xl hover:shadow-md transition-shadow">
+         <div class="flex items-center gap-3 mb-3">
+          <div class="w-12 h-12 rounded-xl bg-amber-100 flex items-center justify-center">
+           🏢
+          </div>
+          <div>
+           <h4 class="font-semibold text-gray-800">KADIN Indonesia</h4><span class="text-xs text-gray-500">Business Association</span>
+          </div>
+         </div>
+         <p class="text-sm text-gray-600 mb-3">Industry networking and business advocacy</p><span class="px-2 py-1 text-xs font-medium text-amber-600 bg-amber-50 rounded-full">Review</span>
+        </div>
+       </div>
+      </div>
+     </div><!-- CSR Programs Page -->
+     <div id="content-csrprogram" class="hidden fade-in">
+      <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+       <div class="flex items-center justify-between mb-6">
+        <h3 class="text-xl font-bold text-gray-800">🌱 CSR Programs Monitoring</h3>
+        <div class="flex gap-2"><select class="px-4 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-pertamina-blue"> <option>All Programs</option> <option>Education</option> <option>Environment</option> <option>Health</option> </select>
+        </div>
+       </div>
+       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="p-5 border border-gray-200 rounded-xl hover:shadow-lg transition-all">
+         <div class="flex items-start justify-between mb-4">
+          <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-pertamina-blue to-pertamina-green flex items-center justify-center text-2xl">
+           🎓
+          </div><span class="px-3 py-1 text-xs font-medium text-pertamina-green bg-pertamina-lightGreen rounded-full">On Track</span>
+         </div>
+         <h4 class="font-bold text-gray-800 mb-2">PERTAMINA CERDAS</h4>
+         <p class="text-sm text-gray-600 mb-4">Program Pertamina Cerdas</p>
+         <div class="flex items-center justify-between text-sm mb-3"><span class="text-gray-500">Progress</span> <span class="font-semibold text-pertamina-blue">75%</span>
+         </div>
+         <div class="h-2 bg-gray-100 rounded-full overflow-hidden mb-4">
+          <div class="h-full bg-pertamina-blue rounded-full" style="width: 75%"></div>
+         </div>
+         <div class="flex items-center justify-between text-xs text-gray-500"><span>🎯 Target: 100 </span> <span>✅ Achieved: 75</span>
+         </div>
+        </div>
+        <div class="p-5 border border-gray-200 rounded-xl hover:shadow-lg transition-all">
+         <div class="flex items-start justify-between mb-4">
+          <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-pertamina-green to-emerald-400 flex items-center justify-center text-2xl">
+           🌳
+          </div><span class="px-3 py-1 text-xs font-medium text-pertamina-green bg-pertamina-lightGreen rounded-full">On Track</span>
+         </div>
+         <h4 class="font-bold text-gray-800 mb-2">MITIGASI BENCANA</h4>
+         <p class="text-sm text-gray-600 mb-4">Program Mitigasi Bencana</p>
+         <div class="flex items-center justify-between text-sm mb-3"><span class="text-gray-500">Progress</span> <span class="font-semibold text-pertamina-green">88%</span>
+         </div>
+         <div class="h-2 bg-gray-100 rounded-full overflow-hidden mb-4">
+          <div class="h-full bg-pertamina-green rounded-full" style="width: 88%"></div>
+         </div>
+         <div class="flex items-center justify-between text-xs text-gray-500"><span>🎯 Target: 50,000 </span> <span>✅ Planted: 44,000</span>
+         </div>
+        </div>
+        <div class="p-5 border border-gray-200 rounded-xl hover:shadow-lg transition-all">
+         <div class="flex items-start justify-between mb-4">
+          <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-pertamina-red to-pink-400 flex items-center justify-center text-2xl">
+           🏪
+          </div><span class="px-3 py-1 text-xs font-medium text-amber-600 bg-amber-50 rounded-full">In Progress</span>
+         </div>
+         <h4 class="font-bold text-gray-800 mb-2">UMK ACADEMY</h4>
+         <p class="text-sm text-gray-600 mb-4">Program Pembinaan UMK : UMK Academy</p>
+         <div class="flex items-center justify-between text-sm mb-3"><span class="text-gray-500">Progress</span> <span class="font-semibold text-amber-500">45%</span>
+         </div>
+         <div class="h-2 bg-gray-100 rounded-full overflow-hidden mb-4">
+          <div class="h-full bg-amber-400 rounded-full" style="width: 45%"></div>
+         </div>
+         <div class="flex items-center justify-between text-xs text-gray-500"><span>🎯 Target: 200 </span> <span>✅ Renovated: 90</span>
+         </div>
+        </div>
+        <div class="p-5 border border-gray-200 rounded-xl hover:shadow-lg transition-all">
+         <div class="flex items-start justify-between mb-4">
+          <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-amber-400 to-orange-400 flex items-center justify-center text-2xl">
+           💡
+          </div><span class="px-3 py-1 text-xs font-medium text-pertamina-green bg-pertamina-lightGreen rounded-full">Completed</span>
+         </div>
+         <h4 class="font-bold text-gray-800 mb-2">Desa ENERGI BERDIKARI</h4>
+         <p class="text-sm text-gray-600 mb-4">Program Desa Energi Berdikari</p>
+         <div class="flex items-center justify-between text-sm mb-3"><span class="text-gray-500">Progress</span> <span class="font-semibold text-pertamina-green">100%</span>
+         </div>
+         <div class="h-2 bg-gray-100 rounded-full overflow-hidden mb-4">
+          <div class="h-full bg-pertamina-green rounded-full" style="width: 100%"></div>
+         </div>
+         <div class="flex items-center justify-between text-xs text-gray-500"><span>🎯 Target: 15 </span> <span>✅ Completed: 15</span>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div><!-- SMEPP Monitoring Page -->
+     <div id="content-smepp" class="hidden fade-in">
+      <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+       <div class="flex items-center justify-between mb-6">
+        <h3 class="text-xl font-bold text-gray-800">🏪 SMEPP - UMKM Binaan Monitoring</h3><button class="px-4 py-2 text-sm font-medium text-white bg-pertamina-red hover:bg-red-700 rounded-lg transition-colors"> Download Report </button>
+       </div>
+       <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+        <div class="p-4 bg-pertamina-lightBlue rounded-xl text-center">
+         <p class="text-3xl font-bold text-pertamina-blue">156</p>
+         <p class="text-sm text-gray-600">Total UMKM Binaan</p>
+        </div>
+        <div class="p-4 bg-pertamina-lightGreen rounded-xl text-center">
+         <p class="text-3xl font-bold text-pertamina-green">89</p>
+         <p class="text-sm text-gray-600">Active Partners</p>
+        </div>
+        <div class="p-4 bg-amber-50 rounded-xl text-center">
+         <p class="text-3xl font-bold text-amber-600">Rp 2.4M</p>
+         <p class="text-sm text-gray-600">Total Revenue Growth</p>
+        </div>
+        <div class="p-4 bg-pertamina-lightRed rounded-xl text-center">
+         <p class="text-3xl font-bold text-pertamina-red">1,250</p>
+         <p class="text-sm text-gray-600">Jobs Created</p>
+        </div>
+       </div>
+       <div class="overflow-x-auto">
+        <table class="w-full">
+         <thead>
+          <tr class="border-b border-gray-200 bg-gray-50">
+           <th class="text-left py-4 px-4 text-sm font-semibold text-gray-600">Nama UMKM</th>
+           <th class="text-left py-4 px-4 text-sm font-semibold text-gray-600">Sektor</th>
+           <th class="text-left py-4 px-4 text-sm font-semibold text-gray-600">Lokasi</th>
+           <th class="text-left py-4 px-4 text-sm font-semibold text-gray-600">Revenue</th>
+           <th class="text-left py-4 px-4 text-sm font-semibold text-gray-600">Growth</th>
+           <th class="text-left py-4 px-4 text-sm font-semibold text-gray-600">Status</th>
+          </tr>
+         </thead>
+         <tbody>
+          <tr class="border-b border-gray-100 hover:bg-gray-50">
+           <td class="py-4 px-4 font-medium text-gray-800">Batik Nusantara</td>
+           <td class="py-4 px-4 text-sm text-gray-600">Fashion</td>
+           <td class="py-4 px-4 text-sm text-gray-600">Pekalongan</td>
+           <td class="py-4 px-4 text-sm text-gray-800 font-medium">Rp 45M</td>
+           <td class="py-4 px-4"><span class="text-pertamina-green font-medium">↑ 23%</span></td>
+           <td class="py-4 px-4"><span class="px-3 py-1 text-xs font-medium text-pertamina-green bg-pertamina-lightGreen rounded-full">Active</span></td>
+          </tr>
+          <tr class="border-b border-gray-100 hover:bg-gray-50">
+           <td class="py-4 px-4 font-medium text-gray-800">Kopi Luwak Jaya</td>
+           <td class="py-4 px-4 text-sm text-gray-600">F&amp;B</td>
+           <td class="py-4 px-4 text-sm text-gray-600">Lampung</td>
+           <td class="py-4 px-4 text-sm text-gray-800 font-medium">Rp 32M</td>
+           <td class="py-4 px-4"><span class="text-pertamina-green font-medium">↑ 18%</span></td>
+           <td class="py-4 px-4"><span class="px-3 py-1 text-xs font-medium text-pertamina-green bg-pertamina-lightGreen rounded-full">Active</span></td>
+          </tr>
+          <tr class="border-b border-gray-100 hover:bg-gray-50">
+           <td class="py-4 px-4 font-medium text-gray-800">Kerajinan Bambu Asri</td>
+           <td class="py-4 px-4 text-sm text-gray-600">Handicraft</td>
+           <td class="py-4 px-4 text-sm text-gray-600">Yogyakarta</td>
+           <td class="py-4 px-4 text-sm text-gray-800 font-medium">Rp 18M</td>
+           <td class="py-4 px-4"><span class="text-amber-600 font-medium">↑ 5%</span></td>
+           <td class="py-4 px-4"><span class="px-3 py-1 text-xs font-medium text-amber-600 bg-amber-50 rounded-full">Growing</span></td>
+          </tr>
+         </tbody>
+        </table>
+       </div>
+      </div>
+     </div><!-- Policy Documents Page -->
+     <div id="content-policies" class="hidden fade-in">
+      <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+       <div class="flex items-center justify-between mb-6">
+        <h3 class="text-xl font-bold text-gray-800">📋 Policy Documents</h3>
+        <div class="flex gap-2"><input type="text" placeholder="Search documents..." class="px-4 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-pertamina-blue"> <button class="px-4 py-2 text-sm font-medium text-white bg-pertamina-blue hover:bg-pertamina-darkBlue rounded-lg transition-colors"> Upload New </button>
+        </div>
+       </div>
+       <div class="space-y-3">
+        <div class="flex items-center gap-4 p-4 border border-gray-200 rounded-xl hover:bg-gray-50 transition-colors cursor-pointer">
+         <div class="w-12 h-12 rounded-lg bg-pertamina-lightBlue flex items-center justify-center">
+          <svg class="w-6 h-6 text-pertamina-blue" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+          </svg>
+         </div>
+         <div class="flex-1">
+          <h4 class="font-semibold text-gray-800">Pedoman GCG Pertamina 2024</h4>
+          <p class="text-sm text-gray-500">Updated: 15 Dec 2024 • PDF • 2.4 MB</p>
+         </div><button class="px-4 py-2 text-sm text-pertamina-blue hover:bg-pertamina-lightBlue rounded-lg transition-colors">Download</button>
+        </div>
+        <div class="flex items-center gap-4 p-4 border border-gray-200 rounded-xl hover:bg-gray-50 transition-colors cursor-pointer">
+         <div class="w-12 h-12 rounded-lg bg-pertamina-lightGreen flex items-center justify-center">
+          <svg class="w-6 h-6 text-pertamina-green" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+          </svg>
+         </div>
+         <div class="flex-1">
+          <h4 class="font-semibold text-gray-800">Kebijakan Anti-Korupsi</h4>
+          <p class="text-sm text-gray-500">Updated: 1 Jan 2025 • PDF • 1.8 MB</p>
+         </div><button class="px-4 py-2 text-sm text-pertamina-blue hover:bg-pertamina-lightBlue rounded-lg transition-colors">Download</button>
+        </div>
+        <div class="flex items-center gap-4 p-4 border border-gray-200 rounded-xl hover:bg-gray-50 transition-colors cursor-pointer">
+         <div class="w-12 h-12 rounded-lg bg-pertamina-lightRed flex items-center justify-center">
+          <svg class="w-6 h-6 text-pertamina-red" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+          </svg>
+         </div>
+         <div class="flex-1">
+          <h4 class="font-semibold text-gray-800">Whistleblowing System Policy</h4>
+          <p class="text-sm text-gray-500">Updated: 10 Nov 2024 • PDF • 980 KB</p>
+         </div><button class="px-4 py-2 text-sm text-pertamina-blue hover:bg-pertamina-lightBlue rounded-lg transition-colors">Download</button>
+        </div>
+        <div class="flex items-center gap-4 p-4 border border-gray-200 rounded-xl hover:bg-gray-50 transition-colors cursor-pointer">
+         <div class="w-12 h-12 rounded-lg bg-gray-100 flex items-center justify-center">
+          <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+          </svg>
+         </div>
+         <div class="flex-1">
+          <h4 class="font-semibold text-gray-800">Board Charter</h4>
+          <p class="text-sm text-gray-500">Updated: 5 Jan 2025 • PDF • 3.2 MB</p>
+         </div><button class="px-4 py-2 text-sm text-pertamina-blue hover:bg-pertamina-lightBlue rounded-lg transition-colors">Download</button>
+        </div>
+       </div>
+      </div>
+     </div><!-- Board Meetings Page -->
+     <div id="content-boardmeeting" class="hidden fade-in">
+      <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+       <div class="flex items-center justify-between mb-6">
+        <h3 class="text-xl font-bold text-gray-800">📆 Board Meeting Schedule</h3><button class="px-4 py-2 text-sm font-medium text-white bg-pertamina-blue hover:bg-pertamina-darkBlue rounded-lg transition-colors flex items-center gap-2">
+         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+         </svg> Schedule Meeting </button>
+       </div>
+       <div class="space-y-4">
+        <div class="p-5 border-l-4 border-pertamina-blue bg-pertamina-lightBlue/30 rounded-r-xl">
+         <div class="flex items-start justify-between">
+          <div><span class="text-xs font-medium text-pertamina-blue bg-pertamina-lightBlue px-2 py-1 rounded">UPCOMING</span>
+           <h4 class="font-bold text-gray-800 mt-2">Board of Directors Meeting Q1 2025</h4>
+           <p class="text-sm text-gray-600 mt-1">Quarterly performance review and strategic planning</p>
+          </div>
+          <div class="text-right">
+           <p class="font-semibold text-gray-800">20 Jan 2025</p>
+           <p class="text-sm text-gray-500">09:00 - 12:00 WIB</p>
+          </div>
+         </div>
+         <div class="flex items-center gap-4 mt-4"><span class="text-sm text-gray-500">📍 Boardroom Lt. 25</span> <span class="text-sm text-gray-500">👥 12 Participants</span>
+         </div>
+        </div>
+        <div class="p-5 border-l-4 border-gray-300 bg-gray-50 rounded-r-xl">
+         <div class="flex items-start justify-between">
+          <div><span class="text-xs font-medium text-gray-600 bg-gray-200 px-2 py-1 rounded">COMPLETED</span>
+           <h4 class="font-bold text-gray-800 mt-2">Audit Committee Meeting</h4>
+           <p class="text-sm text-gray-600 mt-1">Annual audit review and compliance assessment</p>
+          </div>
+          <div class="text-right">
+           <p class="font-semibold text-gray-800">10 Jan 2025</p>
+           <p class="text-sm text-gray-500">14:00 - 17:00 WIB</p>
+          </div>
+         </div>
+         <div class="flex items-center gap-4 mt-4"><span class="text-sm text-gray-500">📍 Meeting Room A</span> <span class="text-sm text-pertamina-green">✓ Minutes Available</span>
+         </div>
+        </div>
+        <div class="p-5 border-l-4 border-gray-300 bg-gray-50 rounded-r-xl">
+         <div class="flex items-start justify-between">
+          <div><span class="text-xs font-medium text-gray-600 bg-gray-200 px-2 py-1 rounded">COMPLETED</span>
+           <h4 class="font-bold text-gray-800 mt-2">Risk Management Committee</h4>
+           <p class="text-sm text-gray-600 mt-1">Risk assessment and mitigation strategies</p>
+          </div>
+          <div class="text-right">
+           <p class="font-semibold text-gray-800">5 Jan 2025</p>
+           <p class="text-sm text-gray-500">10:00 - 12:00 WIB</p>
+          </div>
+         </div>
+         <div class="flex items-center gap-4 mt-4"><span class="text-sm text-gray-500">📍 Virtual Meeting</span> <span class="text-sm text-pertamina-green">✓ Minutes Available</span>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div><!-- Decision Archive Page -->
+     <div id="content-decisions" class="hidden fade-in">
+      <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+       <div class="flex items-center justify-between mb-6">
+        <h3 class="text-xl font-bold text-gray-800">📁 Decision Archive</h3>
+        <div class="flex gap-2"><select class="px-4 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-pertamina-blue"> <option>All Years</option> <option>2025</option> <option>2024</option> <option>2023</option> </select> <select class="px-4 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-pertamina-blue"> <option>All Types</option> <option>Strategic</option> <option>Operational</option> <option>Financial</option> </select>
+        </div>
+       </div>
+       <div class="overflow-x-auto">
+        <table class="w-full">
+         <thead>
+          <tr class="border-b border-gray-200 bg-gray-50">
+           <th class="text-left py-4 px-4 text-sm font-semibold text-gray-600">No. Keputusan</th>
+           <th class="text-left py-4 px-4 text-sm font-semibold text-gray-600">Judul</th>
+           <th class="text-left py-4 px-4 text-sm font-semibold text-gray-600">Tanggal</th>
+           <th class="text-left py-4 px-4 text-sm font-semibold text-gray-600">Type</th>
+           <th class="text-left py-4 px-4 text-sm font-semibold text-gray-600">Status</th>
+           <th class="text-left py-4 px-4 text-sm font-semibold text-gray-600">Action</th>
+          </tr>
+         </thead>
+         <tbody>
+          <tr class="border-b border-gray-100 hover:bg-gray-50">
+           <td class="py-4 px-4 text-sm font-mono text-pertamina-blue">SK/DIR/001/2025</td>
+           <td class="py-4 px-4 text-sm font-medium text-gray-800">Penetapan Target KPI 2025</td>
+           <td class="py-4 px-4 text-sm text-gray-600">5 Jan 2025</td>
+           <td class="py-4 px-4"><span class="px-2 py-1 text-xs font-medium text-pertamina-blue bg-pertamina-lightBlue rounded">Strategic</span></td>
+           <td class="py-4 px-4"><span class="px-2 py-1 text-xs font-medium text-pertamina-green bg-pertamina-lightGreen rounded-full">Active</span></td>
+           <td class="py-4 px-4"><button class="text-sm text-pertamina-blue hover:underline">View</button></td>
+          </tr>
+          <tr class="border-b border-gray-100 hover:bg-gray-50">
+           <td class="py-4 px-4 text-sm font-mono text-pertamina-blue">SK/DIR/045/2024</td>
+           <td class="py-4 px-4 text-sm font-medium text-gray-800">Kebijakan Work From Home</td>
+           <td class="py-4 px-4 text-sm text-gray-600">15 Dec 2024</td>
+           <td class="py-4 px-4"><span class="px-2 py-1 text-xs font-medium text-amber-600 bg-amber-50 rounded">Operational</span></td>
+           <td class="py-4 px-4"><span class="px-2 py-1 text-xs font-medium text-pertamina-green bg-pertamina-lightGreen rounded-full">Active</span></td>
+           <td class="py-4 px-4"><button class="text-sm text-pertamina-blue hover:underline">View</button></td>
+          </tr>
+          <tr class="border-b border-gray-100 hover:bg-gray-50">
+           <td class="py-4 px-4 text-sm font-mono text-pertamina-blue">SK/DIR/040/2024</td>
+           <td class="py-4 px-4 text-sm font-medium text-gray-800">Approval Budget CSR 2025</td>
+           <td class="py-4 px-4 text-sm text-gray-600">28 Nov 2024</td>
+           <td class="py-4 px-4"><span class="px-2 py-1 text-xs font-medium text-pertamina-green bg-pertamina-lightGreen rounded">Financial</span></td>
+           <td class="py-4 px-4"><span class="px-2 py-1 text-xs font-medium text-pertamina-green bg-pertamina-lightGreen rounded-full">Active</span></td>
+           <td class="py-4 px-4"><button class="text-sm text-pertamina-blue hover:underline">View</button></td>
+          </tr>
+          <tr class="border-b border-gray-100 hover:bg-gray-50">
+           <td class="py-4 px-4 text-sm font-mono text-gray-400">SK/DIR/012/2023</td>
+           <td class="py-4 px-4 text-sm font-medium text-gray-500">Struktur Organisasi Lama</td>
+           <td class="py-4 px-4 text-sm text-gray-400">10 Mar 2023</td>
+           <td class="py-4 px-4"><span class="px-2 py-1 text-xs font-medium text-gray-500 bg-gray-100 rounded">Operational</span></td>
+           <td class="py-4 px-4"><span class="px-2 py-1 text-xs font-medium text-gray-500 bg-gray-100 rounded-full">Archived</span></td>
+           <td class="py-4 px-4"><button class="text-sm text-gray-400 hover:underline">View</button></td>
+          </tr>
+         </tbody>
+        </table>
+       </div>
+      </div>
+     </div>
+    </div>
+   </main>
+  </div>
+  <script>
+    // Default configuration
+    const defaultConfig = {
+      dashboard_title: 'PICA',
+      welcome_message: 'Selamat datang di PICA Dashboard',
+      background_color: '#F9FAFB',
+      primary_color: '#0054A6',
+      secondary_color: '#E21F26',
+      accent_color: '#00A651',
+      text_color: '#1F2937',
+      font_family: 'Inter'
+    };
+
+    let config = { ...defaultConfig };
+
+    // Element SDK initialization
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange: async (newConfig) => {
+          config = { ...defaultConfig, ...newConfig };
+          applyConfig();
+        },
+        mapToCapabilities: (cfg) => ({
+          recolorables: [
+            {
+              get: () => cfg.background_color || defaultConfig.background_color,
+              set: (value) => { cfg.background_color = value; window.elementSdk.setConfig({ background_color: value }); }
+            },
+            {
+              get: () => cfg.primary_color || defaultConfig.primary_color,
+              set: (value) => { cfg.primary_color = value; window.elementSdk.setConfig({ primary_color: value }); }
+            },
+            {
+              get: () => cfg.secondary_color || defaultConfig.secondary_color,
+              set: (value) => { cfg.secondary_color = value; window.elementSdk.setConfig({ secondary_color: value }); }
+            },
+            {
+              get: () => cfg.accent_color || defaultConfig.accent_color,
+              set: (value) => { cfg.accent_color = value; window.elementSdk.setConfig({ accent_color: value }); }
+            },
+            {
+              get: () => cfg.text_color || defaultConfig.text_color,
+              set: (value) => { cfg.text_color = value; window.elementSdk.setConfig({ text_color: value }); }
+            }
+          ],
+          borderables: [],
+          fontEditable: {
+            get: () => cfg.font_family || defaultConfig.font_family,
+            set: (value) => { cfg.font_family = value; window.elementSdk.setConfig({ font_family: value }); }
+          },
+          fontSizeable: undefined
+        }),
+        mapToEditPanelValues: (cfg) => new Map([
+          ['dashboard_title', cfg.dashboard_title || defaultConfig.dashboard_title],
+          ['welcome_message', cfg.welcome_message || defaultConfig.welcome_message]
+        ])
+      });
+    }
+
+    function applyConfig() {
+      const title = config.dashboard_title || defaultConfig.dashboard_title;
+      const welcome = config.welcome_message || defaultConfig.welcome_message;
+      const fontFamily = config.font_family || defaultConfig.font_family;
+      const bgColor = config.background_color || defaultConfig.background_color;
+      const primaryColor = config.primary_color || defaultConfig.primary_color;
+      const secondaryColor = config.secondary_color || defaultConfig.secondary_color;
+      const accentColor = config.accent_color || defaultConfig.accent_color;
+      const textColor = config.text_color || defaultConfig.text_color;
+
+      document.getElementById('logo-title').textContent = title;
+      document.getElementById('welcome-text').textContent = welcome;
+      
+      document.body.style.fontFamily = `${fontFamily}, Inter, sans-serif`;
+      document.body.style.backgroundColor = bgColor;
+    }
+
+    // Menu toggle functionality
+    function toggleMenu(menuId) {
+      const submenu = document.getElementById(`submenu-${menuId}`);
+      const arrow = document.getElementById(`arrow-${menuId}`);
+      const menuBtn = document.getElementById(`menu-${menuId}`);
+      
+      // Close all other submenus
+      document.querySelectorAll('.submenu').forEach(sm => {
+        if (sm.id !== `submenu-${menuId}`) {
+          sm.classList.remove('open');
+        }
+      });
+      document.querySelectorAll('[id^="arrow-"]').forEach(ar => {
+        if (ar.id !== `arrow-${menuId}`) {
+          ar.style.transform = 'rotate(0deg)';
+        }
+      });
+      document.querySelectorAll('.sidebar-item').forEach(item => {
+        item.classList.remove('active');
+      });
+
+      // Toggle current submenu
+      submenu.classList.toggle('open');
+      if (submenu.classList.contains('open')) {
+        arrow.style.transform = 'rotate(180deg)';
+        menuBtn.classList.add('active');
+      } else {
+        arrow.style.transform = 'rotate(0deg)';
+      }
+    }
+
+    // Content switching functionality
+    function showContent(contentId) {
+      // Hide all content sections
+      const allContents = [
+        'dashboard-home', 'content-calendar', 'content-media', 'content-planner',
+        'content-workspace', 'content-government', 'content-nongovernment',
+        'content-csrprogram', 'content-smepp', 'content-policies',
+        'content-boardmeeting', 'content-decisions'
+      ];
+      
+      allContents.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.classList.add('hidden');
+          el.classList.remove('fade-in');
+        }
+      });
+
+      // Show selected content
+      const contentMap = {
+        'calendar': 'content-calendar',
+        'media': 'content-media',
+        'planner': 'content-planner',
+        'workspace': 'content-workspace',
+        'government': 'content-government',
+        'nongovernment': 'content-nongovernment',
+        'csrprogram': 'content-csrprogram',
+        'smepp': 'content-smepp',
+        'policies': 'content-policies',
+        'boardmeeting': 'content-boardmeeting',
+        'decisions': 'content-decisions'
+      };
+
+      const targetId = contentMap[contentId] || 'dashboard-home';
+      const targetEl = document.getElementById(targetId);
+      if (targetEl) {
+        targetEl.classList.remove('hidden');
+        setTimeout(() => targetEl.classList.add('fade-in'), 10);
+      }
+
+      // Update page title
+      const titles = {
+        'calendar': 'Content Calendar',
+        'media': 'Media Coverage Schedule',
+        'planner': 'Content Planner',
+        'workspace': 'Team Workspace',
+        'government': 'Government Relations',
+        'nongovernment': 'Non-Government Partners',
+        'csrprogram': 'CSR Programs',
+        'smepp': 'SMEPP Monitoring',
+        'policies': 'Policy Documents',
+        'boardmeeting': 'Board Meetings',
+        'decisions': 'Decision Archive'
+      };
+      document.getElementById('page-title').textContent = titles[contentId] || 'Dashboard Overview';
+    }
+
+    // Update date and time
+    function updateDateTime() {
+      const now = new Date();
+      const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+      const timeOptions = { hour: '2-digit', minute: '2-digit', second: '2-digit' };
+      
+      document.getElementById('current-date').textContent = now.toLocaleDateString('id-ID', dateOptions);
+      document.getElementById('current-time').textContent = now.toLocaleTimeString('id-ID', timeOptions);
+    }
+
+    // Initialize
+    updateDateTime();
+    setInterval(updateDateTime, 1000);
+    applyConfig();
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9ce3af8924c789be',t:'MTc3MTE0Njc2OS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
